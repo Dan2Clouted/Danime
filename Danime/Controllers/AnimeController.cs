@@ -25,6 +25,25 @@ namespace Danime.Controllers
             return View(searchResults);
         }
 
+        public async Task<IActionResult> Details(string search)
+        {
+            if (string.IsNullOrEmpty(search))
+            {
+                return RedirectToAction("Search");
+            }
+
+            var searchResults = await _animeService.SearchAnime(search); // Call API with search term
+
+            if (searchResults == null || !searchResults.data.Any())
+            {
+                return NotFound();
+            }
+
+            var animeDetails = searchResults.data.FirstOrDefault(); // Get first matching anime
+
+            return View(animeDetails);
+        }
+
 
     }
 }

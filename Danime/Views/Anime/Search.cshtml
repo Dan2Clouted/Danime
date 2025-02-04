@@ -1,6 +1,7 @@
 ﻿@model Danime.Models.AnimeData.Root
 
-<form method="get" action="@Url.Action("Search", "Anime")">
+<!-- Search Form -->
+<form method="get" action="@Url.Action("Search", "Anime")" class="search-form">
     <input type="text" name="search" placeholder="Search Anime" required />
     <button type="submit">Search</button>
 </form>
@@ -11,58 +12,29 @@
         @foreach (var anime in Model.data)
         {
             <div class="anime-item">
-                <h3>@anime.title</h3>
-
-                <!-- Display the image if available -->
+                <!-- Anime Image -->
                 @if (anime.images?.jpg?.image_url != null)
                 {
-                    <img src="@anime.images.jpg.image_url" alt="@anime.title" />
+                    <img src="@anime.images.jpg.image_url" alt="@anime.title" class="anime-image" />
                 }
                 else
                 {
                     <p>No image available</p>
                 }
 
-                <!-- Display the synopsis -->
-                <p>@anime.synopsis</p>
+                <!-- Anime Title -->
+                <h3>@anime.title</h3>
 
-                <!-- Display the trailer if available -->
-                @if (anime.trailer != null && !string.IsNullOrEmpty(anime.trailer.embed_url))
-                {
-                    <iframe width="560" height="315"
-                            src="@anime.trailer.embed_url"
-                            frameborder="0" allowfullscreen>
-                    </iframe>
-                }
+                <!-- View More Button -->
+                <a href="@Url.Action("Details", "Anime", new { search = anime.title })" class="view-more-btn">
+                    View More Details
+                </a>
 
-                <!-- Display genres -->
-                <p>
-                    <strong>Genres:</strong>
-                    @foreach (var genre in anime.genres)
-                    {
-                        <span>@genre.name</span>
-                    }
-                </p>
-
-                <!-- Display airing status -->
-                <p><strong>Status:</strong> @anime.status</p>
-
-                <!-- Display score -->
-                <p><strong>Score:</strong> @anime.score</p>
-
-                <!-- Display number of episodes -->
-                @if (anime.episodes.HasValue)
-                {
-                    <p><strong>Episodes:</strong> @anime.episodes</p>
-                }
-
-                <!-- Display other details if needed -->
-                <p><strong>Type:</strong> @anime.type</p>
             </div>
         }
     </div>
 }
 else
 {
-    <p>No anime found. Please try another search.</p>
+    <p class="no-results">No anime found. Please try another search.</p>
 }

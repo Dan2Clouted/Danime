@@ -1,0 +1,51 @@
+@model Danime.Models.AnimeData.Datum
+
+<div class="anime-details-container">
+    <div class="anime-header">
+        <h1>@Model.title</h1>
+        <p class="anime-score">⭐ @Model.score / 10</p>
+    </div>
+
+    <!-- Anime Image & Trailer Section -->
+    <div class="anime-media">
+        <div class="anime-image-container">
+            @if (Model.images?.jpg?.image_url != null)
+            {
+                <img src="@Model.images.jpg.image_url" alt="@Model.title" class="anime-details-img" />
+            }
+        </div>
+
+        @if (Model.trailer != null && !string.IsNullOrEmpty(Model.trailer.embed_url))
+        {
+            <div class="anime-trailer-container">
+                <iframe class="anime-trailer"
+                        src="@Model.trailer.embed_url"
+                        frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
+        }
+    </div>
+
+    <!-- Anime Info Section -->
+    <div class="anime-info">
+        <p class="anime-synopsis">@Model.synopsis</p>
+
+        <div class="anime-meta">
+            <p><strong>Type:</strong> @Model.type</p>
+            <p><strong>Status:</strong> @Model.status</p>
+            <p><strong>Popularity:</strong> #@Model.popularity</p>
+        </div>
+
+        <!-- Genres -->
+        <div class="anime-genres">
+            <strong>Genres:</strong>
+            @foreach (var genre in Model.genres)
+            {
+                <span class="genre-tag">@genre.name</span>
+            }
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <a href="@Url.Action("Search", "Anime")" class="back-btn">🔙 Back to Search</a>
+</div>
