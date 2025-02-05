@@ -17,15 +17,6 @@ html {
   min-height: 100%;
 }
 
-/* LOGO */
-.logo-circle {
-    width: 80px; 
-    height: 80px;
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 3px solid #FFC900; 
-    box-shadow: 0 0 10px rgba(255, 201, 0, 0.6); 
-}
 
 
 /* 🎨 General Styling */
@@ -64,6 +55,30 @@ a, strong, .highlight {
     color: #FFC900;
 }
 
+/*Yellow display name*/
+.name-highlight{
+    color: #FFC900;
+}
+/* Buttons for the Welcoming Message*/
+.btn.btn-warning:active {
+    color: #b6effb;
+}
+. btn.btn-warning:hover{
+
+    color: #b7ff00;
+}
+
+/* LOGO */
+.logo-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #FFC900;
+    box-shadow: 0 0 10px rgba(255, 201, 0, 0.6);
+}
+
+
 /* 🎬 Anime Cards */
 .anime-list {
     display: grid;
@@ -88,6 +103,7 @@ a, strong, .highlight {
     transform: translateY(-5px);
 }
 
+/* 🟡 Anime Image */
 .anime-image {
     width: 100%;
     height: 280px;
@@ -174,4 +190,27 @@ a, strong, .highlight {
 
 .back-btn:hover {
     background: #E0A800;
+}
+
+
+/*Coming Soon - Manga*/
+.coming-soon-container {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background: #1E1A2D;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.coming-soon-container h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #FFC900; /* Yellow color */
+}
+
+.coming-soon-container p {
+    font-size: 18px;
+    opacity: 0.8;
 }
