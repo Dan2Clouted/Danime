@@ -1,6 +1,10 @@
+using Danime.Models;
 using Danime.Service;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = "Data Source= Anime.db";
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
