@@ -1,0 +1,25 @@
+﻿@model List<Danime.Models.MangaData.Datum>
+
+<form method="get" action="@Url.Action("Search", "Manga")">
+    <input type="text" name="query" placeholder="Search Manga" required />
+    <button type="submit">Search</button>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <div class="manga-list">
+        @foreach (var manga in Model)
+        {
+            <div class="manga-item">
+                <h3>@manga.title</h3>
+                <img src="@manga.images?.jpg?.image_url" alt="@manga.title" />
+                <p>@manga.synopsis</p>
+                <a href="@Url.Action("Details", "Manga", new { id = manga.mal_id })">View Details</a>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No results found.</p>  <!-- This will show when no manga is found -->
+}

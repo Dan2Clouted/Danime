@@ -9,6 +9,8 @@ var connectionString = "Data Source= Anime.db";
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<AnimeService>();
+builder.Services.AddHttpClient<MangaService>();
+
 
 var app = builder.Build();
 
