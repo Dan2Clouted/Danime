@@ -2,7 +2,7 @@
 {
     public class MangaData
     {
-        // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+        
         public class Author
         {
             public int mal_id { get; set; }
