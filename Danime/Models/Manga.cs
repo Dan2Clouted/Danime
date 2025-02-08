@@ -1,8 +1,10 @@
-﻿namespace Danime.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Danime.Models
 {
     public class MangaData
     {
-        
         public class Author
         {
             public int mal_id { get; set; }
@@ -29,9 +31,11 @@
             public bool publishing { get; set; }
             public Published published { get; set; }
             public double? score { get; set; }
-            public double scored { get; set; }
-            public int scored_by { get; set; }
-            public int rank { get; set; }
+            public double? scored { get; set; }
+            // Make scored_by nullable to handle null values from the API.
+            public int? scored_by { get; set; }
+            // Changed rank to nullable int.
+            public int? rank { get; set; }
             public int popularity { get; set; }
             public int members { get; set; }
             public int favorites { get; set; }
@@ -53,11 +57,12 @@
             public string url { get; set; }
         }
 
+        // Updated properties to be nullable to handle potential null values from the API.
         public class From
         {
-            public int day { get; set; }
-            public int month { get; set; }
-            public int year { get; set; }
+            public int? day { get; set; }
+            public int? month { get; set; }
+            public int? year { get; set; }
         }
 
         public class Genre
@@ -104,16 +109,24 @@
 
         public class Published
         {
-            public DateTime from { get; set; }
+            // Changed to nullable DateTime to safely handle null values from the API.
+            public DateTime? from { get; set; }
             public DateTime? to { get; set; }
             public Prop prop { get; set; }
             public string @string { get; set; }
         }
 
+        // This class is used when the API returns multiple manga items (e.g., search results)
         public class Root
         {
             public Pagination pagination { get; set; }
             public List<Datum> data { get; set; }
+        }
+
+        // New class for wrapping a single manga detail response
+        public class RootSingle
+        {
+            public Datum data { get; set; }
         }
 
         public class Serialization
@@ -151,8 +164,5 @@
             public string small_image_url { get; set; }
             public string large_image_url { get; set; }
         }
-
-
-
     }
 }

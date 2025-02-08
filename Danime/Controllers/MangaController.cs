@@ -11,6 +11,7 @@ public class MangaController : Controller
         _mangaService = mangaService;
     }
 
+    // Searching manga by query
     public async Task<IActionResult> Search(string query)
     {
         if (string.IsNullOrEmpty(query))
@@ -18,16 +19,38 @@ public class MangaController : Controller
             return View(new List<MangaData.Datum>());
         }
 
-        var mangaResults = await _mangaService.SearchManga(query);
-
-        // Handle empty results here (optional)
-        if (mangaResults == null || !mangaResults.Any())
+        try
         {
-            ViewBag.Message = "No manga found for your search.";
+            var mangaResults = await _mangaService.SearchMangaByQuery(query);
+            ViewData["query"] = query;  // Pass the query to the view
+            return View(mangaResults);
         }
-
-        return View(mangaResults);
+        catch (Exception ex)
+        {
+            ViewBag.ErrorMessage = $"Error: {ex.Message}";
+            return View(new List<MangaData.Datum>());
+        }
     }
 
+
+    // Fetching manga by ID
+    public async Task<IActionResult> Details(int id)
+    {
+        try
+        {
+            var manga = await _mangaService.GetMangaById(id);
+            if (manga == null)
+            {
+                ViewBag.ErrorMessage = "Manga not found.";
+                return View("Error");
+            }
+            return View(manga);
+        }
+        catch (Exception ex)
+        {
+            ViewBag.ErrorMessage = $"Error: {ex.Message}";
+            return View("Error");
+        }
+    }
 
 }

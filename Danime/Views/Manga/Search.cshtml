@@ -1,7 +1,7 @@
 ﻿@model List<Danime.Models.MangaData.Datum>
 
-<form method="get" action="@Url.Action("Search", "Manga")">
-    <input type="text" name="query" placeholder="Search Manga" required />
+<form method="get" action="@Url.Action("Search", "Manga")" class="search-form">
+    <input type="text" name="query" placeholder="Search Anime" required value="@ViewData["query"]" />
     <button type="submit">Search</button>
 </form>
 
@@ -11,15 +11,14 @@
         @foreach (var manga in Model)
         {
             <div class="manga-item">
+                <img src="@manga.images?.jpg?.image_url" alt="@manga.title" class="manga-image" />
                 <h3>@manga.title</h3>
-                <img src="@manga.images?.jpg?.image_url" alt="@manga.title" />
-                <p>@manga.synopsis</p>
-                <a href="@Url.Action("Details", "Manga", new { id = manga.mal_id })">View Details</a>
+                <a href="@Url.Action("Details", "Manga", new { id = manga.mal_id })" class="details-button">View More Details</a>
             </div>
         }
     </div>
 }
 else
 {
-    <p>No results found.</p>  <!-- This will show when no manga is found -->
+    <p class="error-message">@ViewBag.ErrorMessage</p> <!-- Display the error message from the controller if no results -->
 }
