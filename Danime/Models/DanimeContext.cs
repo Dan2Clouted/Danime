@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Danime.Models
 {
-    public class DanimeContext : DbContext
+    public class DanimeContext : IdentityDbContext
     {
         public DbSet<User> Users { get; set; }
 
