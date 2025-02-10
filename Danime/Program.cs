@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = "Data Source= Anime.db";
+var connectionString = "Data Source= Danime.db";
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<AnimeService>();
 builder.Services.AddHttpClient<MangaService>();
+builder.Services.AddDbContext<DanimeContext>(options => options.UseSqlite(connectionString));
 
 
 var app = builder.Build();

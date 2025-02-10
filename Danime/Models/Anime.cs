@@ -1,7 +1,7 @@
 ﻿namespace Danime.Models
 { public class AnimeData
     {
-        // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+        
         public class Aired
         {
             public DateTime from { get; set; }
