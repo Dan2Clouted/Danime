@@ -13,7 +13,7 @@ public class MangaController : Controller
     }
 
     [Authorize]
-    // Searching manga by query
+
     public async Task<IActionResult> Search(string query)
     {
         if (string.IsNullOrEmpty(query))

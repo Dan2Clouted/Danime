@@ -1,13 +1,12 @@
 @model Danime.Models.AnimeData.Datum
 
 <div class="anime-details-container">
-    <div class="anime-header">
-        <h1>@Model.title</h1>
-        <p class="anime-score">⭐ @Model.score / 10</p>
+    <div>
+        <h1 class="anime-title">@Model.title</h1>
     </div>
 
-    <!-- Anime Image & Trailer Section -->
     <div class="anime-media">
+        <!-- Anime Image -->
         <div class="anime-image-container">
             @if (Model.images?.jpg?.image_url != null)
             {
@@ -15,36 +14,57 @@
             }
         </div>
 
-        @if (Model.trailer != null && !string.IsNullOrEmpty(Model.trailer.embed_url))
-        {
-            <div class="anime-trailer-container">
+        <div class="anime-synopsis">
+            <p>@Model.synopsis</p>
+        </div>
+
+        
+    </div>
+
+    <!--Anime Info Section-->
+    <div class="anime-content">
+        <div class="anime-right"> 
+            <div class="anime-meta">
+                <p><strong>Type:</strong> @Model.type</p>
+                <p><strong>Status:</strong> @Model.status</p>
+                <p><strong>Popularity:</strong> #@Model.popularity</p>
+                <p><strong>Score:</strong> ⭐ @Model.score / 10</p>
+                <p><strong>Episodes:</strong> @Model.episodes</p>
+                <p><strong>Duration:</strong> @Model.duration</p>
+
+
+                <div class="anime-genres">
+                    <strong>Genres:</strong>
+                    @foreach (var genre in Model.genres)
+                    {
+                        <span class="genre-tag">@genre.name</span>
+                    }
+                </div>
+
+            </div>
+            
+           
+            
+        </div>
+    </div>
+
+    <!-- Anime Trailer -->
+    <div class="trailer-heading">
+        <h4> Watch Trailer: </h4>
+    </div>
+      <div class="anime-trailer-container">
+            @if (Model.trailer != null && !string.IsNullOrEmpty(Model.trailer.embed_url))
+            {
                 <iframe class="anime-trailer"
                         src="@Model.trailer.embed_url"
                         frameborder="0" allowfullscreen>
                 </iframe>
-            </div>
-        }
-    </div>
-
-    <!-- Anime Info Section -->
-    <div class="anime-info">
-        <p class="anime-synopsis">@Model.synopsis</p>
-
-        <div class="anime-meta">
-            <p><strong>Type:</strong> @Model.type</p>
-            <p><strong>Status:</strong> @Model.status</p>
-            <p><strong>Popularity:</strong> #@Model.popularity</p>
-        </div>
-
-        <!-- Genres -->
-        <div class="anime-genres">
-            <strong>Genres:</strong>
-            @foreach (var genre in Model.genres)
-            {
-                <span class="genre-tag">@genre.name</span>
             }
-        </div>
-    </div>
+            else{
+                <h3>No trailers Available</h3>
+            }
+       </div>
+   
 
     <!-- Back Button -->
     <a href="@Url.Action("Search", "Anime")" class="back-btn">🔙 Back to Search</a>
