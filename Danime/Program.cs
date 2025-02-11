@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("DanimeContextConnection") ?? throw new InvalidOperationException("Connection string 'DanimeContextConnection' not found.");
+
 
 var connectionString = "Data Source= Danime.db";
 
