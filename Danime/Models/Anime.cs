@@ -1,7 +1,8 @@
-﻿namespace Danime.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Danime.Models
 { public class AnimeData
     {
-        
         public class Aired
         {
             public DateTime from { get; set; }

@@ -32,9 +32,7 @@ namespace Danime.Models
             public Published published { get; set; }
             public double? score { get; set; }
             public double? scored { get; set; }
-            // Make scored_by nullable to handle null values from the API.
             public int? scored_by { get; set; }
-            // Changed rank to nullable int.
             public int? rank { get; set; }
             public int popularity { get; set; }
             public int members { get; set; }
