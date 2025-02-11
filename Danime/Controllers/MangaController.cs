@@ -1,5 +1,6 @@
 ﻿using Danime.Models;
 using Danime.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 public class MangaController : Controller
@@ -11,6 +12,7 @@ public class MangaController : Controller
         _mangaService = mangaService;
     }
 
+    [Authorize]
     // Searching manga by query
     public async Task<IActionResult> Search(string query)
     {

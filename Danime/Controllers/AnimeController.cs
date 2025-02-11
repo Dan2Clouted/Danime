@@ -1,5 +1,6 @@
 ﻿using Danime.Models;
 using Danime.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Danime.Controllers
@@ -12,7 +13,7 @@ namespace Danime.Controllers
         {
             _animeService = animeService;
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Search(string search)
         {
