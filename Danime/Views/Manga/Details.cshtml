@@ -2,39 +2,41 @@
 
 <div class="details-container">
     <h1>@Model.title</h1>
-    <img src="@Model.images?.jpg?.image_url" alt="@Model.title" class="details-image" />
-    <p><strong>Score:</strong> @(Model.score.HasValue ? Model.score.Value.ToString("F1") : "No score available")</p>
-    <p><strong>Chapters:</strong> @Model.chapters</p>
-    <p><strong>Status:</strong> @Model.status</p>
-    <p><strong>Synopsis:</strong> @Model.synopsis</p>
+    <div class="details-content">
+        <img src="@Model.images?.jpg?.image_url" alt="@Model.title" class="details-image" />
 
-    <h3>Genres</h3>
-    <ul class="genre-list">
-        @if (Model.genres != null)
-        {
-            foreach (var genre in Model.genres)
-            {
-                <li>@genre.name</li>
-            }
-        }
-        else
-        {
-            <li>No genres available.</li>
-        }
-    </ul>
+        <div class="manga-synopsis">
+            <p><strong></strong> @Model.synopsis</p>
+        </div>
+    </div>
 
-    <h3>Authors</h3>
-    <ul class="author-list">
-        @if (Model.authors != null)
+    
+
+    <div class="manga-meta">
+        <p><strong>Rank:</strong> @Model.rank</p>
+        <p><strong>Popularity:</strong> @Model.popularity</p>
+        <p><strong>Favorites:</strong> @Model.favorites</p>
+        <p><strong>Type:</strong> @Model.type</p>
+        <p><strong>Status:</strong> @Model.status</p>
+
+    </div>
+
+
+    <!-- Genres -->
+    <div class="manga-genres">
+        <strong>Genres:</strong>
+        @foreach (var genre in Model.genres)
         {
-            foreach (var author in Model.authors)
-            {
-                <li>@author.name</li>
-            }
+            <span class="genre-tag">@genre.name</span>
         }
-        else
+    </div>
+
+    <!-- Authors -->
+    <div class="anime-genres">
+        <strong>Authors:</strong>
+        @foreach (var author in Model.authors)
         {
-            <li>No authors available.</li>
+            <span class="genre-tag">@author.name</span>
         }
-    </ul>
+    </div>
 </div>
