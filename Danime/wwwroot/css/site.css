@@ -17,7 +17,7 @@ html {
   min-height: 100%;
 }
 
-/* 🎨 General Styling */
+
 body {
     background: #0F0D19; /* Deep black */
     color: white;
@@ -74,6 +74,26 @@ a, strong, .highlight {
     object-fit: cover;
     border: 3px solid #FFC900;
     box-shadow: 0 0 10px rgba(255, 201, 0, 0.6);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 20vh;
+}
+
+.content {
+    flex: 1; /* Ensures content takes up available space */
+    padding-bottom: 30px; /* Adjust based on footer height */
+}
+
+.footer {
+    background-color: #0F0D19; /* Dark background */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    width: 100%;
 }
 
 /*SEARCH FUNCTION*/
@@ -431,3 +451,20 @@ a, strong, .highlight {
 }
 
 
+/*TERMS OF USE*/
+.tou-content {
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+/*ACCESSIBILITY*/
+.asy-content{
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+/*PRIVACY*/
+.pry-content{
+    font-family: sans-serif;
+    font-size: 18px;
+}

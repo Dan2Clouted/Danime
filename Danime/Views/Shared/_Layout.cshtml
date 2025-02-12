@@ -77,6 +77,21 @@
         </main>
     </div>
 
+    <div class="wrapper">
+        <main class="content">
+            @RenderBody()
+        </main>
+        <footer class="footer">
+            <div class="footer-container">
+                <a href="@Url.Action("TermsOfUse", "Home")">Terms of Use</a> |
+                <a href="@Url.Action("Accessibility", "Home")">Accessibility</a> |
+                <a href="@Url.Action("Privacy", "Home")">Privacy</a>
+            </div>
+        </footer>
+    </div>
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
