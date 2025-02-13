@@ -1,21 +1,33 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Danime.Models;
+using Danime.Service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Danime.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly AnimeService _animeService;
+        private readonly MangaService _mangaService;
 
-        public HomeController(ILogger<HomeController> logger)
+        // ✅ FIXED: Ensure only ONE constructor exists
+        public HomeController(ILogger<HomeController> logger, AnimeService animeService, MangaService mangaService)
         {
             _logger = logger;
+            _animeService = animeService;
+            _mangaService = mangaService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var topAnime = await _animeService.GetTopAnimesAsync();
+            var topManga = await _mangaService.GetTopMangaAsync(); // Fetch Top Manga
+
+            return View((topAnime, topManga));
         }
 
         public IActionResult Privacy()

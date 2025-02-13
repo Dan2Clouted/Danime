@@ -11,28 +11,43 @@ namespace Danime.Service
         {
             _httpClient = httpClient;
         }
+
+        // Search for anime based on a query
         public async Task<AnimeData.Root> SearchAnime(string query)
         {
             try
             {
-                Console.WriteLine($"Searching for anime: {query}"); 
+                Console.WriteLine($"Searching for anime: {query}");
 
                 var response = await _httpClient.GetStringAsync($"https://api.jikan.moe/v4/anime?q={query}");
-                Console.WriteLine($"API Response: {response}"); 
+                Console.WriteLine($"API Response: {response}");
 
                 var searchResult = JsonConvert.DeserializeObject<AnimeData.Root>(response);
-
-                return searchResult;
+                return searchResult ?? new AnimeData.Root();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error fetching anime: {ex.Message}");
-                return new AnimeData.Root(); // Return an empty list if an error occurs
+                return new AnimeData.Root(); // Return an empty object if an error occurs
             }
         }
 
+        // Fetch top 10 animes
+        public async Task<List<AnimeData.Datum>> GetTopAnimesAsync()
+        {
+            try
+            {
+                string url = "https://api.jikan.moe/v4/top/anime?limit=10";
+                var response = await _httpClient.GetStringAsync(url);
+                var data = JsonConvert.DeserializeObject<AnimeData.Root>(response);
 
-
-
+                return data?.data ?? new List<AnimeData.Datum>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching top animes: {ex.Message}");
+                return new List<AnimeData.Datum>(); // Return an empty list in case of error
+            }
+        }
     }
 }

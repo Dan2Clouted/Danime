@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Danime.Models
-{ public class AnimeData
+{
+    public class AnimeData
     {
         public class Aired
         {
@@ -87,10 +89,6 @@ namespace Danime.Models
             public Jpg jpg { get; set; }
             public Webp webp { get; set; }
             public string image_url { get; set; }
-            public string small_image_url { get; set; }
-            public string medium_image_url { get; set; }
-            public string large_image_url { get; set; }
-            public string maximum_image_url { get; set; }
         }
 
         public class Items
@@ -179,7 +177,4 @@ namespace Danime.Models
             public string large_image_url { get; set; }
         }
     }
-    
-
-
 }

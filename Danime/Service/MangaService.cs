@@ -1,4 +1,5 @@
 ﻿using Danime.Models;
+using Newtonsoft.Json;
 
 namespace Danime.Service
 {
@@ -39,5 +40,23 @@ namespace Danime.Service
 
             return mangaData?.data ?? new List<MangaData.Datum>();  // Return empty list if no data
         }
+
+        public async Task<List<AnimeData.Datum>> GetTopMangaAsync()
+        {
+            try
+            {
+                string url = "https://api.jikan.moe/v4/top/manga?limit=10"; // Fetch Top 10 Manga
+                var response = await _httpClient.GetStringAsync(url);
+                var data = JsonConvert.DeserializeObject<AnimeData.Root>(response);
+
+                return data?.data ?? new List<AnimeData.Datum>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching top manga: {ex.Message}");
+                return new List<AnimeData.Datum>();
+            }
+        }
+
     }
 }

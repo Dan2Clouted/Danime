@@ -468,3 +468,84 @@ a, strong, .highlight {
     font-family: sans-serif;
     font-size: 18px;
 }
+
+
+/*STYLING FOR THE HOMEPAGE*/
+/* 📌 Homepage Layout */
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    gap: 20px;
+    padding-top: 30px;
+}
+
+/* 🏆 Section Titles */
+.section-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffcc00;
+    display: flex;
+    align-items: center;
+}
+
+/* 🔥 Homepage Anime/Manga Lists */
+.homepage-anime-list, .homepage-manga-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 🎖️ Anime/Manga Items */
+.homepage-anime-item, .homepage-manga-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(20, 20, 20, 0.8);
+    padding: 12px;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #ffcc00;
+    position: relative;
+}
+
+    .homepage-anime-item:hover, .homepage-manga-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0px 4px 10px rgba(255, 204, 0, 0.5);
+    }
+
+/* 🏅 Ranking Number Badge */
+.homepage-rank-badge {
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffcc00;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+
+/* 🖼️ Anime/Manga Images */
+.homepage-anime-item img, .homepage-manga-item img {
+    width: 80px;
+    height: 120px;
+    border-radius: 5px;
+}
+
+/* 🎤 Anime/Manga Titles */
+.homepage-anime-title, .homepage-manga-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+/* 📌 Anime/Manga Info */
+.homepage-anime-info, .homepage-manga-info {
+    font-size: 14px;
+    color: #ccc;
+}

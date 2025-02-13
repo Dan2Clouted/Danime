@@ -1,4 +1,5 @@
-﻿@{
+﻿@model (List<Danime.Models.AnimeData.Datum> TopAnime, List<Danime.Models.AnimeData.Datum> TopManga)
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,4 +7,46 @@
     <h2>Welcome to <span class="name-highlight">Danime</span></h2>
     <p>The best site to look up for Anime and Manga</p>
     <button class="btn btn-warning btn-color" onclick="window.location.href='@Url.Action("Search", "Anime")'">Search Anime &rarr;</button>
+</div>
+
+
+<!-- Anime & Manga Section -->
+<div class="content-container">
+    <!-- Top Anime Section -->
+    <div class="anime-section">
+        <div class="section-title">🔥 Top Anime</div>
+        <div class="homepage-anime-list">
+            @for (int i = 0; i < Model.TopAnime.Count; i++)
+            {
+                var anime = Model.TopAnime[i];
+                <div class="homepage-anime-item">
+                    <div class="homepage-rank-badge">@(i + 1)</div> <!-- Rank Number -->
+                    <img src="@anime.images.jpg.image_url" alt="@anime.title">
+                    <div class="anime-details">
+                        <div class="homepage-anime-title">@anime.title</div>
+                        <div class="homepage-anime-info">⭐ @anime.score | 📺 @anime.type</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Top Manga Section -->
+    <div class="manga-section">
+        <div class="section-title">📖 Top Manga</div>
+        <div class="homepage-manga-list">
+            @for (int i = 0; i < Model.TopManga.Count; i++)
+            {
+                var manga = Model.TopManga[i];
+                <div class="homepage-manga-item">
+                    <div class="homepage-rank-badge">@(i + 1)</div> <!-- Rank Number -->
+                    <img src="@manga.images.jpg.image_url" alt="@manga.title">
+                    <div class="manga-details">
+                        <div class="homepage-manga-title">@manga.title</div>
+                        <div class="homepage-manga-info">⭐ @manga.score | 📚 @manga.type</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
