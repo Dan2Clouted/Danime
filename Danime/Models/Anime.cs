@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Danime.Models
 {
@@ -34,8 +35,8 @@ namespace Danime.Models
             public string title_japanese { get; set; }
             public List<string> title_synonyms { get; set; }
             public string type { get; set; }
-            public string source { get; set; }
-            public int? episodes { get; set; }
+            public string source { get; set; }    
+            public string episodes { get; set; }
             public string status { get; set; }
             public bool airing { get; set; }
             public Aired aired { get; set; }

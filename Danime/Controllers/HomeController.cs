@@ -27,8 +27,9 @@ namespace Danime.Controllers
             var topAnime = await _animeService.GetTopAnimesAsync(); // Fetch Top Anime
             var topManga = await _mangaService.GetTopMangaAsync(); // Fetch Top Manga
             var airingAnime = await _animeService.GetAiringAnimeAsync(); // Fetch Recently Aired Episodes
+            var trendingEpisodes = await _animeService.GetTrendingEpisodesAsync(); // Fetch Trending Episodes
 
-            return View((topAnime, topManga, airingAnime));
+            return View((topAnime, topManga, airingAnime, trendingEpisodes));
         }
 
         public IActionResult Privacy()
