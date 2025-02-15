@@ -549,3 +549,47 @@ a, strong, .highlight {
     font-size: 14px;
     color: #ccc;
 }
+
+
+
+/* RECENTLY AIRING ANIME*/
+.episode-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-around;
+}
+
+.episode-item {
+    width: 220px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #FFC900;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .episode-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 5px 15px rgba(255, 201, 0, 0.5);
+        background: rgba(255, 201, 0, 0.2);
+    }
+
+    .episode-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+.episode-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+}
+
+.episode-info {
+    font-size: 14px;
+    color: #ccc;
+}

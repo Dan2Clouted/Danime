@@ -24,10 +24,11 @@ namespace Danime.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var topAnime = await _animeService.GetTopAnimesAsync();
+            var topAnime = await _animeService.GetTopAnimesAsync(); // Fetch Top Anime
             var topManga = await _mangaService.GetTopMangaAsync(); // Fetch Top Manga
+            var airingAnime = await _animeService.GetAiringAnimeAsync(); // Fetch Recently Aired Episodes
 
-            return View((topAnime, topManga));
+            return View((topAnime, topManga, airingAnime));
         }
 
         public IActionResult Privacy()

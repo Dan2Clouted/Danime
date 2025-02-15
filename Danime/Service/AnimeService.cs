@@ -49,5 +49,41 @@ namespace Danime.Service
                 return new List<AnimeData.Datum>(); // Return an empty list in case of error
             }
         }
+
+        // Fetch Aired Episodes
+        public async Task<List<AnimeData.Datum>> GetAiringAnimeAsync()
+        {
+            string url = "https://api.jikan.moe/v4/anime?status=airing"; // ✅ Fetch currently airing anime
+
+            try
+            {
+                var response = await _httpClient.GetStringAsync(url);
+                Console.WriteLine($"API Response: {response}"); // 🔍 Debugging: Print API response
+
+                var data = JsonConvert.DeserializeObject<AnimeData.Root>(response);
+
+                if (data != null && data.data.Count > 0)
+                {
+                    Console.WriteLine($"Fetched {data.data.Count} currently airing anime."); // ✅ Confirm data size
+                }
+                else
+                {
+                    Console.WriteLine("No currently airing anime found.");
+                }
+
+                return data?.data ?? new List<AnimeData.Datum>();
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"HTTP Request Error: {ex.Message}");
+                return new List<AnimeData.Datum>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General Error: {ex.Message}");
+                return new List<AnimeData.Datum>();
+            }
+        }
+
     }
 }

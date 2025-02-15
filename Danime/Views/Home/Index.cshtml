@@ -1,4 +1,4 @@
-﻿@model (List<Danime.Models.AnimeData.Datum> TopAnime, List<Danime.Models.AnimeData.Datum> TopManga)
+﻿@model (List<Danime.Models.AnimeData.Datum> TopAnime, List<Danime.Models.AnimeData.Datum> TopManga, List<Danime.Models.AnimeData.Datum> airingAnime)
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -10,7 +10,7 @@
 </div>
 
 
-
+<!--Top Anime Section-->
 <div class="content-container">
     <div class="anime-section">
         <div class="section-title">🔥 Top Anime</div>
@@ -47,5 +47,32 @@
                 </div>
             }
         </div>
+    </div>
+</div>
+
+<!-- 📌 Currently Airing Anime (Instead of Recent Episodes) -->
+<div class="content-container">
+    <div class="anime-section">
+        <div class="section-title">⏳ Currently Airing Anime</div>
+
+        @if (Model.airingAnime.Count > 0)
+        {
+            <div class="episode-list">
+                @foreach (var anime in Model.airingAnime.Take(10))
+                {
+                    <div class="episode-item">
+                        <img src="@anime.images.jpg.image_url" alt="@anime.title">
+                        <div class="episode-details">
+                            <div class="episode-title">@anime.title</div>
+                            <div class="episode-info">📅 Aired on @anime.aired.from.ToShortDateString()</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p>No currently airing anime available.</p> <!-- ✅ Prevents empty display issues -->
+        }
     </div>
 </div>
