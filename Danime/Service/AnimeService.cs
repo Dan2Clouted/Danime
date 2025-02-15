@@ -50,40 +50,16 @@ namespace Danime.Service
             }
         }
 
-        // Fetch Aired Episodes
+        // Fetch Airing Anime
         public async Task<List<AnimeData.Datum>> GetAiringAnimeAsync()
         {
-            string url = "https://api.jikan.moe/v4/anime?status=airing"; // ✅ Fetch currently airing anime
+            string url = "https://api.jikan.moe/v4/anime?status=airing";
+            var response = await _httpClient.GetStringAsync(url);
+            var data = JsonConvert.DeserializeObject<AnimeData.Root>(response);
 
-            try
-            {
-                var response = await _httpClient.GetStringAsync(url);
-                Console.WriteLine($"API Response: {response}"); // 🔍 Debugging: Print API response
+            return data?.data ?? new List<AnimeData.Datum>();
 
-                var data = JsonConvert.DeserializeObject<AnimeData.Root>(response);
-
-                if (data != null && data.data.Count > 0)
-                {
-                    Console.WriteLine($"Fetched {data.data.Count} currently airing anime."); // ✅ Confirm data size
-                }
-                else
-                {
-                    Console.WriteLine("No currently airing anime found.");
-                }
-
-                return data?.data ?? new List<AnimeData.Datum>();
-            }
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine($"HTTP Request Error: {ex.Message}");
-                return new List<AnimeData.Datum>();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"General Error: {ex.Message}");
-                return new List<AnimeData.Datum>();
-            }
-        }
+        } 
 
     }
 }
