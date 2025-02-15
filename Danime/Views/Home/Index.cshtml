@@ -1,4 +1,4 @@
-﻿@model (List<Danime.Models.AnimeData.Datum> TopAnime, List<Danime.Models.AnimeData.Datum> TopManga, List<Danime.Models.AnimeData.Datum> airingAnime, List<Danime.Models.AnimeData.Datum> trendingEpisodes)
+﻿@model (List<Danime.Models.AnimeData.Datum> TopAnime, List<Danime.Models.AnimeData.Datum> TopManga, List<Danime.Models.AnimeData.Datum> airingAnime)
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -77,21 +77,3 @@
     </div>
 </div>
 
-<!-- 🔥 Trending Episodes -->
-<div class="content-container">
-    <div class="anime-section">
-        <div class="section-title">🔥 Trending Episodes</div>
-        <div class="episode-list">
-            @foreach (var episode in Model.trendingEpisodes.Take(10))
-            {
-                <div class="episode-item">
-                    <img src="@episode.images.jpg.image_url" alt="@episode.title">
-                    <div class="episode-details">
-                        <div class="episode-title">@episode.title</div>
-                        <div class="episode-info">⭐ @episode.score | 🎬 Episode @episode.episodes</div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</div>

@@ -61,13 +61,5 @@ namespace Danime.Service
 
         } 
 
-        public async Task<List<AnimeData.Datum>> GetTrendingEpisodesAsync()
-        {
-            string url = "https://api.jikan.moe/v4/watch/episodes/popular";
-            var response = await _httpClient.GetStringAsync(url);
-            var data = JsonConvert.DeserializeObject<AnimeData.Root>(response);
-            return data?.data ?? new List<AnimeData.Datum>();
-        }
-
     }
 }

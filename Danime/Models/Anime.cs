@@ -36,7 +36,7 @@ namespace Danime.Models
             public List<string> title_synonyms { get; set; }
             public string type { get; set; }
             public string source { get; set; }    
-            public string episodes { get; set; }
+            public int? episodes { get; set; }
             public string status { get; set; }
             public bool airing { get; set; }
             public Aired aired { get; set; }
