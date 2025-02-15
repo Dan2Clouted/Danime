@@ -553,43 +553,95 @@ a, strong, .highlight {
 
 
 /* RECENTLY AIRING ANIME*/
-.episode-list {
+/* 📌 Content Layout (Keeps Everything in One Row) */
+.content-container {
     display: flex;
+    justify-content: space-between;
+    gap: 20px;
     flex-wrap: wrap;
-    gap: 15px;
-    justify-content: space-around;
+    padding-top: 30px;
 }
 
-.episode-item {
-    width: 220px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 12px;
-    border-radius: 8px;
-    text-align: center;
-    border: 2px solid #FFC900;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Each Section (Anime, Manga, Airing) */
+.section {
+    flex: 1;
+    min-width: 300px;
 }
 
-    .episode-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0px 5px 15px rgba(255, 201, 0, 0.5);
-        background: rgba(255, 201, 0, 0.2);
-    }
-
-    .episode-item img {
-        width: 100%;
-        height: auto;
-        border-radius: 5px;
-    }
-
-.episode-title {
-    font-size: 16px;
+/* Section Title */
+.section-title {
+    font-size: 22px;
     font-weight: bold;
-    color: white;
-    margin-top: 10px;
+    margin-bottom: 15px;
+    color: #ffcc00;
 }
 
-.episode-info {
+/* Anime/Manga/Airing List */
+.homepage-anime-list,
+.homepage-manga-list,
+.homepage-airing-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Individual Anime/Manga/Airing Box */
+.homepage-anime-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(20, 20, 20, 0.8);
+    padding: 12px;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #ffcc00;
+    position: relative;
+}
+
+/* Rank Badge */
+.homepage-rank-badge {
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffcc00;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+
+/* Hover Effect */
+.homepage-anime-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 4px 10px rgba(255, 204, 0, 0.5);
+}
+
+/* Anime Images */
+.homepage-anime-item img {
+    width: 80px;
+    height: 120px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+/* Anime Details */
+.anime-details {
+    flex: 1;
+    color: white;
+}
+
+/* Anime Title */
+.homepage-anime-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+/* Anime Info */
+.homepage-anime-info {
     font-size: 14px;
     color: #ccc;
+}
 }

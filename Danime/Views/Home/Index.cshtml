@@ -1,4 +1,5 @@
-﻿@model (List<Danime.Models.AnimeData.Datum> TopAnime, List<Danime.Models.AnimeData.Datum> TopManga, List<Danime.Models.AnimeData.Datum> airingAnime)
+﻿@model (List<Danime.Models.AnimeData.Datum> topAnime, List<Danime.Models.AnimeData.Datum> topManga, List<Danime.Models.AnimeData.Datum> airingAnime)
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -9,17 +10,18 @@
     <button class="btn btn-warning btn-color" onclick="window.location.href='@Url.Action("Search", "Anime")'">Search Anime &rarr;</button>
 </div>
 
-
-<!--Top Anime Section-->
+<!-- 📌 Top Anime, Top Manga & Airing Anime in One Row -->
 <div class="content-container">
-    <div class="anime-section">
+
+    <!-- Top Anime -->
+    <div class="section">
         <div class="section-title">🔥 Top Anime</div>
         <div class="homepage-anime-list">
-            @for (int i = 0; i < Model.TopAnime.Count; i++)
+            @for (int i = 0; i < Model.topAnime.Count; i++)
             {
-                var anime = Model.TopAnime[i];
+                var anime = Model.topAnime[i];
                 <div class="homepage-anime-item">
-                    <div class="homepage-rank-badge">@(i + 1)</div> <!-- Rank Number -->
+                    <div class="homepage-rank-badge">@(i + 1)</div>
                     <img src="@anime.images.jpg.image_url" alt="@anime.title">
                     <div class="anime-details">
                         <div class="homepage-anime-title">@anime.title</div>
@@ -30,15 +32,15 @@
         </div>
     </div>
 
-    <!-- Top Manga Section -->
-    <div class="manga-section">
+    <!-- Top Manga -->
+    <div class="section">
         <div class="section-title">📖 Top Manga</div>
         <div class="homepage-manga-list">
-            @for (int i = 0; i < Model.TopManga.Count; i++)
+            @for (int i = 0; i < Model.topManga.Count; i++)
             {
-                var manga = Model.TopManga[i];
+                var manga = Model.topManga[i];
                 <div class="homepage-manga-item">
-                    <div class="homepage-rank-badge">@(i + 1)</div> <!-- Rank Number -->
+                    <div class="homepage-rank-badge">@(i + 1)</div>
                     <img src="@manga.images.jpg.image_url" alt="@manga.title">
                     <div class="manga-details">
                         <div class="homepage-manga-title">@manga.title</div>
@@ -48,32 +50,24 @@
             }
         </div>
     </div>
-</div>
 
-<!-- 📌 Currently Airing Anime -->
-<div class="content-container">
-    <div class="anime-section">
+    <!-- Currently Airing Anime -->
+    <div class="section">
         <div class="section-title">⏳ Currently Airing Anime</div>
-
-        @if (Model.airingAnime.Count > 0)
-        {
-            <div class="episode-list">
-                @foreach (var anime in Model.airingAnime.Take(10))
-                {
-                    <div class="episode-item">
-                        <img src="@anime.images.jpg.image_url" alt="@anime.title">
-                        <div class="episode-details">
-                            <div class="episode-title">@anime.title</div>
-                            <div class="episode-info">📅 Aired on @anime.aired.from.ToShortDateString()</div>
-                        </div>
+        <div class="homepage-airing-list">
+            @for (int i = 0; i < Model.airingAnime.Take(10).Count(); i++)
+            {
+                var anime = Model.airingAnime[i];
+                <div class="homepage-anime-item">
+                    <div class="homepage-rank-badge">@(i + 1)</div>
+                    <img src="@anime.images.jpg.image_url" alt="@anime.title">
+                    <div class="anime-details">
+                        <div class="homepage-anime-title">@anime.title</div>
+                        <div class="homepage-anime-info">📅 Aired on @anime.aired.from.ToShortDateString()</div>
                     </div>
-                }
-            </div>
-        }
-        else
-        {
-            <p>No currently airing anime available.</p>
-        }
+                </div>
+            }
+        </div>
     </div>
-</div>
 
+</div>
