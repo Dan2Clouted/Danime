@@ -1,5 +1,4 @@
 ﻿using Danime.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -7,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Danime.Controllers
 {
-    [Authorize]
     public class FavoritesController : Controller
     {
         private readonly DanimeContext _context;
@@ -20,25 +18,25 @@ namespace Danime.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToFavorites(int animeId, string title, string imageUrl, string type)
         {
-            var userId = User?.Identity?.Name; 
+            var userId = User?.Identity?.Name;
 
             if (string.IsNullOrEmpty(userId))
             {
                 return Unauthorized();
             }
 
-            // Check if the anime is already in favorites
+            
             var existingFavorite = await _context.Favorites
-                .FirstOrDefaultAsync(f => f.AnimeId == animeId && f.UserId == userId);
+                .FirstOrDefaultAsync(f => f.AnimeId == animeId && f.UserId == userId && f.Type == type);
 
             if (existingFavorite == null)
             {
-                var favorite = new Favorites  
+                var favorite = new Favorites 
                 {
                     AnimeId = animeId,
                     Title = title,
                     ImageUrl = imageUrl,
-                    Type = type,
+                    Type = type,  
                     UserId = userId
                 };
 

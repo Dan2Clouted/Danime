@@ -22,6 +22,21 @@
             </div>
         }
     </div>
+
+    <h3>📚 Manga Favorites</h3>
+    <div class="favorites-container">
+        @foreach (var favorite in Model.Where(f => f.Type == "Manga"))
+        {
+            <div class="favorite-card">
+                <img src="@favorite.ImageUrl" alt="@favorite.Title">
+                <h3>@favorite.Title</h3>
+                <form asp-action="RemoveMangaFromFavorites" method="post">
+                    <input type="hidden" name="id" value="@favorite.Id">
+                    <button type="submit" class="remove-favorite-btn">❌ Remove</button>
+                </form>
+            </div>
+        }
+    </div>
 }
 else
 {

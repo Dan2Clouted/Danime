@@ -1,5 +1,6 @@
 ﻿@model List<Danime.Models.MangaData.Datum>
 
+<!-- Search Form -->
 <form method="get" action="@Url.Action("Search", "Manga")" class="search-form">
     <input type="text" name="query" placeholder="Search Manga" required value="@ViewData["query"]" />
     <button type="submit">Search</button>
@@ -11,9 +12,27 @@
         @foreach (var manga in Model)
         {
             <div class="manga-item">
+                <!-- Manga Cover Image -->
                 <img src="@manga.images?.jpg?.image_url" alt="@manga.title" class="manga-image" />
+
+                <!-- Manga Title -->
                 <h3>@manga.title</h3>
-                <a href="@Url.Action("Details", "Manga", new { id = manga.mal_id })" class="details-button">View More Details</a>
+
+               
+
+                <!-- View More Details -->
+                <a href="@Url.Action("Details", "Manga", new { id = manga.mal_id })" class="details-button">
+                    View More Details
+                </a>
+
+                <!-- Add to Favorites Button -->
+                <form asp-controller="Favorites" asp-action="AddToFavorites" method="post">
+                    <input type="hidden" name="animeId" value="@manga.mal_id" /> 
+                    <input type="hidden" name="title" value="@manga.title" />
+                    <input type="hidden" name="imageUrl" value="@manga.images?.jpg?.image_url" />
+                    <input type="hidden" name="type" value="Manga" />
+                    <button type="submit" class="favorite-btn">💖</button>
+                </form>
             </div>
         }
     </div>
