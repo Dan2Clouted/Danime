@@ -1,6 +1,6 @@
 ﻿namespace Danime.Models
 {
-    public class Favorite
+    public class Favorites
     {
         public int Id { get; set; }
         public int AnimeId { get; set; } // ID from Jikan API

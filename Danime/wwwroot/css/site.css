@@ -646,3 +646,73 @@ a, strong, .highlight {
     font-size: 14px;
     color: #ccc;
 }
+
+
+/*FAVORITES */
+.favorite-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    color: #ff4d4d; /* Red Heart Color */
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    padding-top: 20px;
+}
+
+    .favorite-btn:hover {
+        transform: scale(1.1);
+        color: #ff0000; /* Darker red on hover */
+    }
+
+/* Favorites Page Container */
+.favorites-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Individual Favorite Item */
+.favorite-card {
+    background-color: #0F0D19;
+    border-radius: 10px;
+    width: 220px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+    .favorite-card:hover {
+        transform: scale(1.05);
+    }
+
+    /* Favorite Anime Image */
+    .favorite-card img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    /* Favorite Anime Title */
+    .favorite-card h3 {
+        font-size: 16px;
+        margin-top: 10px;
+        color: white;
+    }
+
+/* Remove Button */
+.remove-favorite-btn {
+    background-color: #e6c228;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+    .remove-favorite-btn:hover {
+        background-color: #e63939;
+    }

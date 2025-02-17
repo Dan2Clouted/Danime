@@ -1,0 +1,29 @@
+﻿@model List<Danime.Models.Favorites>
+
+<h2>Your Favorites ⭐</h2>
+
+@if (Model != null && Model.Any())
+{
+    <div class="favorites-container">
+        @foreach (var favorites in Model)
+        {
+            <div class="favorite-card">
+                <!-- Anime Image -->
+                <img src="@favorites.ImageUrl" alt="@favorites.Title">
+
+                <!-- Anime Title -->
+                <h3>@favorites.Title</h3>
+
+                <!-- Remove from Favorites Button -->
+                <form asp-action="RemoveFromFavorites" method="post">
+                    <input type="hidden" name="id" value="@favorites.Id">
+                    <button type="submit" class="remove-favorite-btn"> Remove</button>
+                </form>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No favorites yet! Start adding some anime ❤️</p>
+}

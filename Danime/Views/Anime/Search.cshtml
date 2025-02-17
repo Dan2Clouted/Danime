@@ -12,7 +12,7 @@
         @foreach (var anime in Model.data)
         {
             <div class="anime-item">
-                <!-- Anime Image -->
+                
                 @if (anime.images?.jpg?.image_url != null)
                 {
                     <img src="@anime.images.jpg.image_url" alt="@anime.title" class="anime-image" />
@@ -22,15 +22,24 @@
                     <p>No image available</p>
                 }
 
-                <!-- Anime Title -->
+                
                 <h3>@anime.title</h3>
 
-                <!-- View More Button -->
+
                 <a href="@Url.Action("Details", "Anime", new { search = anime.title })" class="view-more-btn">
                     View More Details
                 </a>
 
+
+                <form asp-controller="Favorites" asp-action="AddToFavorites" method="post">
+                    <input type="hidden" name="animeId" value="@anime.mal_id" />
+                    <input type="hidden" name="title" value="@anime.title" />
+                    <input type="hidden" name="imageUrl" value="@anime.images.jpg.image_url" />
+                    <input type="hidden" name="type" value="Anime" />
+                    <button type="submit" class="favorite-btn">❤️</button>
+                </form>
             </div>
+        }
         }
     </div>
 }

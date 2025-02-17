@@ -1,7 +1,7 @@
 ﻿@model List<Danime.Models.MangaData.Datum>
 
 <form method="get" action="@Url.Action("Search", "Manga")" class="search-form">
-    <input type="text" name="query" placeholder="Search Anime" required value="@ViewData["query"]" />
+    <input type="text" name="query" placeholder="Search Manga" required value="@ViewData["query"]" />
     <button type="submit">Search</button>
 </form>
 
@@ -20,5 +20,5 @@
 }
 else
 {
-    <p class="error-message">@ViewBag.ErrorMessage</p> <!-- Display the error message from the controller if no results -->
+    <p class="error-message">@ViewBag.ErrorMessage</p>
 }
