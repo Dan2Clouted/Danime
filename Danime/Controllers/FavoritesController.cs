@@ -24,8 +24,7 @@ namespace Danime.Controllers
             {
                 return Unauthorized();
             }
-
-            
+ 
             var existingFavorite = await _context.Favorites
                 .FirstOrDefaultAsync(f => f.AnimeId == animeId && f.UserId == userId && f.Type == type);
 
