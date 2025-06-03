@@ -13,7 +13,6 @@ namespace Danime.Controllers
         {
             _animeService = animeService;
         }
-        [Authorize()]
         [HttpGet]
         public async Task<IActionResult> Search(string search)
         {
