@@ -15,10 +15,10 @@ var userInfo = databaseUri.UserInfo.Split(':');
 var connectionStringBuilder = new NpgsqlConnectionStringBuilder
 {
     Host = databaseUri.Host,
-    Port = databaseUri.Port,
+    Port = databaseUri.Port > 0 ? databaseUri.Port : 5432,
     Username = userInfo[0],
     Password = userInfo[1],
-    Database = databaseUri.AbsolutePath.Trim('/'),
+    Database = databaseUri.AbsolutePath.Trim('/'),  
     SslMode = SslMode.Require,
     TrustServerCertificate = true
 };
