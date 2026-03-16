@@ -1,6 +1,10 @@
 # Danime 🎬
 
-**Danime** is an anime tracker web app that lets users search for anime and manga, view details, and explore trending titles — all powered by the [Jikan API](https://jikan.moe/).
+**Danime**  is a full-stack anime discovery web application that allows users to search, explore, and save their favourite anime and manga. 
+
+
+The platform integrates the [Jikan API](https://jikan.moe/)  to provide live anime data while allowing users to create accounts and build personal favourite lists.
+
 
 🌐 **Live Demo**: https://danime.dan2clouted.com  
 
@@ -8,11 +12,13 @@
 ---
 
 ## 🚀 Features
-- 🔍 **Search** anime & manga with live API results
-- 🏆 View **Top Anime** and **Currently Airing**
-- 📄 Detailed anime pages with title, rating, and description
-- ❤️ Save favorites (local database support with SQLite)
-- 🔗 Built using **C# ASP.NET MVC**
+- 🔍 Search anime and manga using the Jikan API
+- 📈 View trending and currently airing anime
+- 📄 Detailed anime information pages
+- 👤 User authentication (ASP.NET Identity)
+- ❤️ Save favourite anime
+- 🗄 Persistent database storage
+- 🌍 Live cloud deployment
 
 ---
 
