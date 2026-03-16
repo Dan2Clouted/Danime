@@ -5,17 +5,18 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var dbPath = Path.Combine(AppContext.BaseDirectory, "Danime.db");
-var connectionString = $"Data Source={dbPath}";
+var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
 
-// Add services to the container.
+// Add services
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<AnimeService>();
 builder.Services.AddHttpClient<MangaService>();
-builder.Services.AddDbContext<DanimeContext>(options => options.UseSqlite(connectionString));
+
+builder.Services.AddDbContext<DanimeContext>(options =>
+    options.UseNpgsql(connectionString));
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<DanimeContext>();
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
