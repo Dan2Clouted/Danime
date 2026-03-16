@@ -11,6 +11,7 @@ public class MangaController : Controller
     {
         _mangaService = mangaService;
     }
+    [Authorize]
     public async Task<IActionResult> Search(string query)
     {
         if (string.IsNullOrEmpty(query))

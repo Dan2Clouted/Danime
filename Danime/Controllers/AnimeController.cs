@@ -14,6 +14,7 @@ namespace Danime.Controllers
             _animeService = animeService;
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Search(string search)
         {
             if (string.IsNullOrEmpty(search))
