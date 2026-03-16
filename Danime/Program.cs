@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-var connectionString = "Data Source=Danime.db";
+var dbPath = Path.Combine(AppContext.BaseDirectory, "Danime.db");
+var connectionString = $"Data Source={dbPath}";
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -14,9 +14,10 @@ builder.Services.AddHttpClient<AnimeService>();
 builder.Services.AddHttpClient<MangaService>();
 builder.Services.AddDbContext<DanimeContext>(options => options.UseSqlite(connectionString));
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
- .AddEntityFrameworkStores<DanimeContext>();
+    .AddEntityFrameworkStores<DanimeContext>();
 
 var app = builder.Build();
+
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<DanimeContext>();
@@ -27,17 +28,12 @@ using (var scope = app.Services.CreateScope())
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
